@@ -1,0 +1,31 @@
+
+.head-title {
+    margin-top: 5%;
+}
+
+.inline {
+    display: flex;
+}
+
+.results-tbl {
+    display: flex;
+
+    img {
+        max-width: 30%;
+        margin-right: 30px;
+    }
+
+    table {
+        tbody {
+            th {
+                text-align: right;
+                vertical-align: top;
+            }
+            td {
+                padding-left: 20px;
+            }
+        }
+    }
+}
+
+//
