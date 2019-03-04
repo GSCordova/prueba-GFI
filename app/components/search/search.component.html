@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <h1 class="head-title">Introduzca el nombre de una pelicula</h1>
+
+    <div class="form-row head-title">
+      <div class="col-md-4 mb-3">
+        <label for="validationDefault01">Título</label>
+        <input type="text" class="form-control" id="validationDefault01" placeholder="Título" [(ngModel)]="title">
+      </div>
+    </div>
+    <button class="btn btn-primary" type="button" (click)='search(title)'>Consultar</button>
+
+<hr />
+
+<div *ngIf='films.Response == "False"'>
+  <h3>No se encontraron resultados</h3>
+</div>
+
+<div id='results' *ngIf='films.Response == "True"'>
+  <div class='results-tbl'>
+    <img src="{{ films.Poster }}" class="card-img-top" alt="...">
+    <div class='title'>
+      <h2>{{ films.Title }}</h2>
+      <br />
+      <table>
+        <tbody>
+          <tr>
+            <th scope="row">Año</th>
+            <td>{{ films.Year }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Duración</th>
+            <td>{{ films.Runtime }}</td>
+          </tr>
+          <tr>
+            <th scope="row">País</th>
+            <td>{{ films.Country }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Idioma</th>
+            <td>{{ films.Language }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Director</th>
+            <td>{{ films.Director }}</td>
+          </tr>
+          <tr>
+          <tr>
+            <th scope="row">Guión</th>
+            <td>{{ films.Writer }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Reparto</th>
+            <td>{{ films.Actors }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Género</th>
+            <td>{{ films.Genre }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Sinopsis</th>
+            <td>{{ films.Plot }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Premios</th>
+            <td>{{ films.Awards }}</td>
+          </tr>
+          <tr>
+            <th scope='row'>Valoraciones</th>
+            <td>
+            {{ films.Ratings[0].Source }}: {{ films.Ratings[0].Value }}
+            </td>
+          </tr>
+          <tr>
+            <th scope='row'>Calificación</th>
+            <td>{{ films.Rated }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <i class="fas fa-star fa-2x" [style.color]="isFav() ? 'yellow': 'white'" (click)='fav(films.imdbID)'></i>
+</div>
