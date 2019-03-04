@@ -9,6 +9,7 @@ import { Pelicula } from './interface/pelicula';
 export class PeliculasService {
 
   url: string;
+  apikey = 'f12ba140';
 
   constructor(private http: HttpClient) {
     this.url = 'http://www.omdbapi.com/';
@@ -17,7 +18,7 @@ export class PeliculasService {
   getOmdb(title): Observable<Pelicula> {
     const params = new HttpParams()
       .set('t', title)
-      .set('apikey', 'f12ba140');
+      .set('apikey', this.apikey);
 
     return this.http.get<Pelicula>(this.url, { params });
   }

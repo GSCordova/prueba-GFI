@@ -1,42 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-// Sevicio dónde se llama a la API
 import { PeliculasService } from './../../services/http.service';
-import { ConsoleReporter } from 'jasmine';
+
+import { Pelicula } from './../../services/interface/pelicula';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
-  films: any;
+  films: Pelicula;
   favFilms: any;
   title: string;
-  type: string;
-  year: string;
 
   constructor(public peliculasServ: PeliculasService) {
-
-    if (localStorage.getItem('id') == null) {
+    this.title = '';
+  // Verifico si hay Peliculas guardadas como favoritas
+    if (localStorage.getItem('idPeliculasFavoritas') == null) {
       this.favFilms = [];
     } else {
-      this.favFilms = localStorage.getItem('id') == null;
+      this.favFilms = localStorage.getItem('idPeliculasFavoritas').split(',');
     }
   }
 
-  ngOnInit() {
-    console.log('---------------');
-    console.log(this.favFilms);
-  }
-
   // Función que ejecuta la llamada a la API
-  search(title) {
-    console.log(this.title);
-    this.peliculasServ.getOmdb(title).subscribe(resp => this.films = resp);
+  search() {
+    this.peliculasServ.getOmdb(this.title).subscribe(resp => this.films = resp);
   }
 
+  // Guarda y borra el ID de las peliculas favoritas en el LocalStorage.
   fav(id) {
     if (this.favFilms.includes(id)) {
       this.favFilms.splice(this.favFilms.indexOf(id), 1);
@@ -46,4 +40,14 @@ export class SearchComponent implements OnInit {
       localStorage.setItem('idPeliculasFavoritas', this.favFilms);
     }
   }
+
+  // Verifico si la pelicula a buscar ya está agregada a favoritos.
+  isFav() {
+    if (this.favFilms.includes(this.films.imdbID)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

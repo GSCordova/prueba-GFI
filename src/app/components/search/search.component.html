@@ -1,23 +1,26 @@
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<h3 class="head-title">Buscar título</h3>
-  <div class='inline'>
-    <input type="text" class='form-control' placeholder="Título" [(ngModel)]="title">
-  </div>
-  <br />
-  <button type="submit" class="btn btn-primary" (click)='search(title)'>Search!</button>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <h1 class="head-title">Introduzca el nombre de una pelicula</h1>
+
+    <div class="form-row head-title">
+      <div class="col-md-4 mb-3">
+        <label for="validationDefault01">Título</label>
+        <input type="text" class="form-control" id="validationDefault01" placeholder="Título" [(ngModel)]="title">
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" (click)='search(title)'>Consultar</button>
 
 <hr />
 
 <div *ngIf='films.Response == "False"'>
-  <h1>No se encontraron resultados</h1>
+  <h3>No se encontraron resultados</h3>
 </div>
 
 <div id='results' *ngIf='films.Response == "True"'>
   <div class='results-tbl'>
     <img src="{{ films.Poster }}" class="card-img-top" alt="...">
     <div class='title'>
-      <h3>{{ films.Title }}</h3>
-      <small>{{ films.Type }}</small>
+      <h2>{{ films.Title }}</h2>
       <br />
       <table>
         <tbody>
@@ -77,47 +80,5 @@
     </div>
   </div>
   <hr>
-  <button type="button" class="btn btn-warning" (click)='fav(films.imdbID)'>favorito</button>
+  <i class="fas fa-star fa-2x" [style.color]="isFav() ? 'yellow': 'white'" (click)='fav(films.imdbID)'></i>
 </div>
-  <!-- 
-BoxOffice: "N/A"
-DVD: "N/A"
-Metascore: "N/A"
-Production: "N/A"
-Rated: "Not Rated"
-Ratings: [{Source: "Internet Movie Database", Value: "6.8/10"}]
-Released: "21 Oct 2006"
-Response: "True"
-Website: "N/A"
-imdbID: "tt1436480"
-imdbRating: "6.8"
-imdbVotes: "5" -->
-
-<!-- ño
-1999
-Duración
-139 min.
-País
-Estados Unidos Estados Unidos
-Dirección
-David Fincher
-Guion
-Jim Uhls (Novela: Chuck Palahniuk)
-Música
-The Dust Brothers, Michael Simpson, John King
-Fotografía
-Jeff Cronenweth
-Reparto
-Edward Norton,  Brad Pitt,  Helena Bonham Carter,  Meat Loaf,  Jared Leto, Van Quattro,  Markus Redmond,  Michael Girardin,  Rachel Singer,  Eion Bailey, David Lee Smith,  Zach Grenier,  Richmond Arquette,  David Andrews, George Maguire,  Eugenie Bondurant,  Christina Cabot,  Sydney 'Big Dawg' Colston, Tim DeZarn,  Christie Cronenweth,  Ezra Buzzington,  Dierdre Downing-Jackson, Bob Stephenson,  Charlie Dell,  Rob Lanza,  Holt McCallany,  Joel Bissonnette
-Productora
-Fox 2000 Pictures / Regency Enterprises / Linson Films / Atman Entertainment / Knickerbocker Films / Taurus Film
-Género
-Drama. Thriller | Sátira. Drama psicológico. Película de culto. Comedia negra
-Grupos
-Adaptaciones de Chuck Palahniuk Novedad
-Sinopsis
-Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador. (FILMAFFINITY)
-Premios
-1999: Nominada al Oscar: Mejores efectos de sonido
-Críticas
-David Fincher ("Alien 3", "Seven") continúa su escalada al olimpo de los directores de cul -->
