@@ -46,6 +46,17 @@ export class AppComponent {
   }
 
   elim() {
+
+    if (typeof window.console === "undefined") {
+      // Define a dummy window.console if not debugging
+      (<any>window).console = <Console>({
+          debug: (message ?: string, ...optionalParams: any[]) => {},
+          error: (message?: any, ...optionalParams: any[]) => {},
+          info: (message ?: any, ...optionalParams: any[]) => {},
+          log: (message?: any, ...optionalParams: any[]) => {},
+          warn: (message?: any, ...optionalParams: any[]) => {}
+      });
+  }
     const DEBUG = false;
     if (!DEBUG) {
     if (!window.console) {
